@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funpay.management.mapper.TBusinessDao">
+    <resultMap id="BaseResultMap" type="com.funpay.model.dto.TBusiness">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="merchant_id" jdbcType="INTEGER" property="merchantId"/>
+        <result column="business_name" jdbcType="VARCHAR" property="businessName"/>
+        <result column="business_type" jdbcType="VARCHAR" property="businessType"/>
+        <result column="business_platform" jdbcType="VARCHAR" property="businessPlatform"/>
+        <result column="vat_rate_id" jdbcType="INTEGER" property="vatRateId"/>
+        <result column="step_fee_id" jdbcType="INTEGER" property="stepFeeId"/>
+        <result column="third_fee_id" jdbcType="INTEGER" property="thirdFeeId"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="business_rsa_pub_key" jdbcType="VARCHAR" property="businessRsaPubKey"/>
+        <result column="return_url" jdbcType="VARCHAR" property="returnUrl"/>
+        <result column="sign" jdbcType="VARCHAR" property="sign"/>
+        <result column="field" jdbcType="VARCHAR" property="field"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, merchant_id, business_name, business_type, business_platform, vat_rate_id, step_fee_id,
+    third_fee_id, `status`, business_rsa_pub_key, return_url, sign, field, create_time, 
+    update_time, version
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_business
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_business
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.funpay.model.dto.TBusiness"
+            useGeneratedKeys="true">
+        insert into t_business (merchant_id, business_name, business_type,
+                                business_platform, vat_rate_id, step_fee_id,
+                                third_fee_id, `status`, business_rsa_pub_key,
+                                return_url, sign, field,
+                                create_time, update_time, version)
+        values (#{merchantId,jdbcType=INTEGER}, #{businessName,jdbcType=VARCHAR}, #{businessType,jdbcType=VARCHAR},
+                #{businessPlatform,jdbcType=VARCHAR}, #{vatRateId,jdbcType=INTEGER}, #{stepFeeId,jdbcType=INTEGER},
+                #{thirdFeeId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{businessRsaPubKey,jdbcType=VARCHAR},
+                #{returnUrl,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{field,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.funpay.model.dto.TBusiness"
+            useGeneratedKeys="true">
+        insert into t_business
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="merchantId != null">
+                merchant_id,
+            </if>
+            <if test="businessName != null">
+                business_name,
+            </if>
+            <if test="businessType != null">
+                business_type,
+            </if>
+            <if test="businessPlatform != null">
+                business_platform,
+            </if>
+            <if test="vatRateId != null">
+                vat_rate_id,
+            </if>
+            <if test="stepFeeId != null">
+                step_fee_id,
+            </if>
+            <if test="thirdFeeId != null">
+                third_fee_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="businessRsaPubKey != null">
+                business_rsa_pub_key,
+            </if>
+            <if test="returnUrl != null">
+                return_url,
+            </if>
+            <if test="sign != null">
+                sign,
+            </if>
+            <if test="field != null">
+                field,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="merchantId != null">
+                #{merchantId,jdbcType=INTEGER},
+            </if>
+            <if test="businessName != null">
+                #{businessName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=VARCHAR},
+            </if>
+            <if test="businessPlatform != null">
+                #{businessPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="vatRateId != null">
+                #{vatRateId,jdbcType=INTEGER},
+            </if>
+            <if test="stepFeeId != null">
+                #{stepFeeId,jdbcType=INTEGER},
+            </if>
+            <if test="thirdFeeId != null">
+                #{thirdFeeId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="businessRsaPubKey != null">
+                #{businessRsaPubKey,jdbcType=VARCHAR},
+            </if>
+            <if test="returnUrl != null">
+                #{returnUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="field != null">
+                #{field,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.funpay.model.dto.TBusiness">
+        update t_business
+        <set>
+            <if test="merchantId != null">
+                merchant_id = #{merchantId,jdbcType=INTEGER},
+            </if>
+            <if test="businessName != null">
+                business_name = #{businessName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType,jdbcType=VARCHAR},
+            </if>
+            <if test="businessPlatform != null">
+                business_platform = #{businessPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="vatRateId != null">
+                vat_rate_id = #{vatRateId,jdbcType=INTEGER},
+            </if>
+            <if test="stepFeeId != null">
+                step_fee_id = #{stepFeeId,jdbcType=INTEGER},
+            </if>
+            <if test="thirdFeeId != null">
+                third_fee_id = #{thirdFeeId,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="businessRsaPubKey != null">
+                business_rsa_pub_key = #{businessRsaPubKey,jdbcType=VARCHAR},
+            </if>
+            <if test="returnUrl != null">
+                return_url = #{returnUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null">
+                sign = #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="field != null">
+                field = #{field,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.funpay.model.dto.TBusiness">
+        update t_business
+        set merchant_id          = #{merchantId,jdbcType=INTEGER},
+            business_name        = #{businessName,jdbcType=VARCHAR},
+            business_type        = #{businessType,jdbcType=VARCHAR},
+            business_platform    = #{businessPlatform,jdbcType=VARCHAR},
+            vat_rate_id          = #{vatRateId,jdbcType=INTEGER},
+            step_fee_id          = #{stepFeeId,jdbcType=INTEGER},
+            third_fee_id         = #{thirdFeeId,jdbcType=INTEGER},
+            `status`             = #{status,jdbcType=VARCHAR},
+            business_rsa_pub_key = #{businessRsaPubKey,jdbcType=VARCHAR},
+            return_url           = #{returnUrl,jdbcType=VARCHAR},
+            sign                 = #{sign,jdbcType=VARCHAR},
+            field                = #{field,jdbcType=VARCHAR},
+            create_time          = #{createTime,jdbcType=TIMESTAMP},
+            update_time          = #{updateTime,jdbcType=TIMESTAMP},
+            version              = #{version,jdbcType=BIGINT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

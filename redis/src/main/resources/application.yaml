@@ -1,0 +1,14 @@
+spring:
+  redis:
+    host: 192.168.187.10
+    port: 7001
+    clusterNodes: 192.168.187.10:7001,192.168.187.10:7002,192.168.187.10:7003,192.168.187.10:7004,192.168.187.10:7005,192.168.187.10:7006
+    timeout: 2000
+    password: ''
+    expireSeconds: 60000
+    connectionTimeout: 60000
+    maxAttempts: 10
+    maxActive: 500
+    maxIdle: 50
+    minIdle: 10
+    maxWait: 360000

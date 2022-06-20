@@ -1,0 +1,12 @@
+# 应用名称
+spring:
+  application:
+    name: funpay-management
+  profiles:
+    active: dev
+server:
+  port: 12000
+  servlet:
+    context-path: /management
+
+

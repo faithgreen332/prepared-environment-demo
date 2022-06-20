@@ -1,0 +1,4 @@
+# 数据库连接
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource

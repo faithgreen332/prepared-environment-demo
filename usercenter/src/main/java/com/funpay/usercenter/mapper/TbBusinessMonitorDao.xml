@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funpay.usercenter.mapper.TbBusinessMonitorDao">
+  <resultMap id="BaseResultMap" type="com.funpay.usercenter.model.TbBusinessMonitor">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="business_code" jdbcType="VARCHAR" property="businessCode" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="switch_code" jdbcType="VARCHAR" property="switchCode" />
+    <result column="mess" jdbcType="VARCHAR" property="mess" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, business_code, `status`, switch_code, mess, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_business_monitor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_business_monitor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.funpay.usercenter.model.TbBusinessMonitor" useGeneratedKeys="true">
+    insert into tb_business_monitor (business_code, `status`, switch_code, 
+      mess, create_time, update_time
+      )
+    values (#{businessCode,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{switchCode,jdbcType=VARCHAR}, 
+      #{mess,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.funpay.usercenter.model.TbBusinessMonitor" useGeneratedKeys="true">
+    insert into tb_business_monitor
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="businessCode != null">
+        business_code,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="switchCode != null">
+        switch_code,
+      </if>
+      <if test="mess != null">
+        mess,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="businessCode != null">
+        #{businessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="switchCode != null">
+        #{switchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mess != null">
+        #{mess,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.funpay.usercenter.model.TbBusinessMonitor">
+    update tb_business_monitor
+    <set>
+      <if test="businessCode != null">
+        business_code = #{businessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="switchCode != null">
+        switch_code = #{switchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="mess != null">
+        mess = #{mess,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.funpay.usercenter.model.TbBusinessMonitor">
+    update tb_business_monitor
+    set business_code = #{businessCode,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      switch_code = #{switchCode,jdbcType=VARCHAR},
+      mess = #{mess,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

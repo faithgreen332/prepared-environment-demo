@@ -1,0 +1,50 @@
+# 自己也注册自己
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      #      defaultZone: http://funpay:sadilfhaihasofnjkas@8.218.25.23:11001/eureka/,http://funpay:sadilfhaihasofnjkas@8.218.25.23:11002/eureka/
+      defaultZone: http://funpay:GMoGNeAh9zUfCoBlqNkWlycebTCvYv@172.31.118.122:11001/eureka/,http://funpay:GMoGNeAh9zUfCoBlqNkWlycebTCvYv@172.31.118.122:11002/eureka/
+spring:
+  datasource:
+    uc:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://127.0.0.1:21406/pay.uc?useUnicode=true&characterEncoding=utf8&useSSL=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: '@buyoo2018'
+      minimum-idle: 1
+      maximun-pool-size: 5
+      auto-commit: true
+      idle-timeout: 60000
+      pool-name: uc
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: select 1
+    payment:
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbc-url: jdbc:mysql://127.0.0.1:21406/pay.payment?useUnicode=true&characterEncoding=utf8&useSSL=false
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: '@buyoo2018'
+      minimum-idle: 1
+      maximun-pool-size: 5
+      auto-commit: true
+      idle-timeout: 60000
+      pool-name: payment
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: select 1
+
+funpay:
+  signKey: B0DE9A4AF1F663272DF8D39B15978F79
+  id: 201
+  environment: true
+  name: usercenter
+  version: 1.0
+  copyrightYear: 2021
+  demoEnabled: true
+  profile: /home/profile
+  addressEnabled: true
+  profiles: prod

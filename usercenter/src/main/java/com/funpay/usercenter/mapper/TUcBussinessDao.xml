@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funpay.usercenter.mapper.TUcBussinessDao">
+    <resultMap id="BaseResultMap" type="com.funpay.usercenter.model.TUcBussiness">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="merchant_id" jdbcType="INTEGER" property="merchantId"/>
+        <result column="business_name" jdbcType="VARCHAR" property="businessName"/>
+        <result column="business_type" jdbcType="VARCHAR" property="businessType"/>
+        <result column="business_platform" jdbcType="VARCHAR" property="businessPlatform"/>
+        <result column="business_package_name" jdbcType="VARCHAR" property="businessPackageName"/>
+        <result column="business_sign" jdbcType="VARCHAR" property="businessSign"/>
+        <result column="sign_path" jdbcType="VARCHAR" property="signPath"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="recovery_date" jdbcType="TIMESTAMP" property="recoveryDate"/>
+        <result column="online_flag" jdbcType="INTEGER" property="onlineFlag"/>
+        <result column="online_period_type" jdbcType="VARCHAR" property="onlinePeriodType"/>
+        <result column="online_period_value" jdbcType="VARCHAR" property="onlinePeriodValue"/>
+        <result column="online_period_lay_type" jdbcType="VARCHAR" property="onlinePeriodLayType"/>
+        <result column="online_period_lay_value" jdbcType="VARCHAR" property="onlinePeriodLayValue"/>
+        <result column="online_pay_amount" jdbcType="INTEGER" property="onlinePayAmount"/>
+        <result column="online_pay_rate" jdbcType="INTEGER" property="onlinePayRate"/>
+        <result column="offline_flag" jdbcType="INTEGER" property="offlineFlag"/>
+        <result column="offline_period_type" jdbcType="VARCHAR" property="offlinePeriodType"/>
+        <result column="offline_period_value" jdbcType="VARCHAR" property="offlinePeriodValue"/>
+        <result column="offline_period_lay_type" jdbcType="VARCHAR" property="offlinePeriodLayType"/>
+        <result column="offline_period_lay_value" jdbcType="VARCHAR" property="offlinePeriodLayValue"/>
+        <result column="offline_pay_amount" jdbcType="INTEGER" property="offlinePayAmount"/>
+        <result column="offline_pay_rate" jdbcType="INTEGER" property="offlinePayRate"/>
+        <result column="service_type" jdbcType="VARCHAR" property="serviceType"/>
+        <result column="return_url" jdbcType="VARCHAR" property="returnUrl"/>
+        <result column="execution_time" jdbcType="TIMESTAMP" property="executionTime"/>
+        <result column="auto_withdraw" jdbcType="VARCHAR" property="autoWithdraw"/>
+        <result column="offline_execution_time" jdbcType="TIMESTAMP" property="offlineExecutionTime"/>
+        <result column="online_intl_pay_amount" jdbcType="INTEGER" property="onlineIntlPayAmount"/>
+        <result column="online_intl_pay_rate" jdbcType="INTEGER" property="onlineIntlPayRate"/>
+        <result column="transfer_flag" jdbcType="INTEGER" property="transferFlag"/>
+        <result column="transfer_amount" jdbcType="INTEGER" property="transferAmount"/>
+        <result column="transfer_rate" jdbcType="INTEGER" property="transferRate"/>
+        <result column="virtual_card_flag" jdbcType="INTEGER" property="virtualCardFlag"/>
+        <result column="verify_pub_key" jdbcType="VARCHAR" property="verifyPubKey"/>
+        <result column="sign_pub_key" jdbcType="VARCHAR" property="signPubKey"/>
+        <result column="sign_pri_key" jdbcType="VARCHAR" property="signPriKey"/>
+        <result column="version_sign" jdbcType="VARCHAR" property="versionSign"/>
+        <result column="business_data_sign" jdbcType="VARCHAR" property="businessDataSign"/>
+        <result column="rsa_sign_version" jdbcType="VARCHAR" property="rsaSignVersion"/>
+        <result column="rsa_sign_data" jdbcType="VARCHAR" property="rsaSignData"/>
+        <result column="tiered_fee_rules" jdbcType="OTHER" property="tieredFeeRules"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, merchant_id, business_name, business_type, business_platform, business_package_name,
+    business_sign, sign_path, create_time, update_time, `status`, recovery_date, online_flag, 
+    online_period_type, online_period_value, online_period_lay_type, online_period_lay_value, 
+    online_pay_amount, online_pay_rate, offline_flag, offline_period_type, offline_period_value, 
+    offline_period_lay_type, offline_period_lay_value, offline_pay_amount, offline_pay_rate, 
+    service_type, return_url, execution_time, auto_withdraw, offline_execution_time, 
+    online_intl_pay_amount, online_intl_pay_rate, transfer_flag, transfer_amount, transfer_rate, 
+    virtual_card_flag, verify_pub_key, sign_pub_key, sign_pri_key, version_sign, business_data_sign, 
+    rsa_sign_version, rsa_sign_data, tiered_fee_rules
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_uc_bussiness
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_uc_bussiness
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.funpay.usercenter.model.TUcBussiness"
+            useGeneratedKeys="true">
+        insert into t_uc_bussiness (merchant_id, business_name, business_type,
+                                    business_platform, business_package_name,
+                                    business_sign, sign_path, create_time,
+                                    update_time, `status`, recovery_date,
+                                    online_flag, online_period_type, online_period_value,
+                                    online_period_lay_type, online_period_lay_value,
+                                    online_pay_amount, online_pay_rate, offline_flag,
+                                    offline_period_type, offline_period_value,
+                                    offline_period_lay_type, offline_period_lay_value,
+                                    offline_pay_amount, offline_pay_rate, service_type,
+                                    return_url, execution_time, auto_withdraw,
+                                    offline_execution_time, online_intl_pay_amount,
+                                    online_intl_pay_rate, transfer_flag, transfer_amount,
+                                    transfer_rate, virtual_card_flag, verify_pub_key,
+                                    sign_pub_key, sign_pri_key, version_sign,
+                                    business_data_sign, rsa_sign_version, rsa_sign_data,
+                                    tiered_fee_rules)
+        values (#{merchantId,jdbcType=INTEGER}, #{businessName,jdbcType=VARCHAR}, #{businessType,jdbcType=VARCHAR},
+                #{businessPlatform,jdbcType=VARCHAR}, #{businessPackageName,jdbcType=VARCHAR},
+                #{businessSign,jdbcType=VARCHAR}, #{signPath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}, #{recoveryDate,jdbcType=TIMESTAMP},
+                #{onlineFlag,jdbcType=INTEGER}, #{onlinePeriodType,jdbcType=VARCHAR},
+                #{onlinePeriodValue,jdbcType=VARCHAR},
+                #{onlinePeriodLayType,jdbcType=VARCHAR}, #{onlinePeriodLayValue,jdbcType=VARCHAR},
+                #{onlinePayAmount,jdbcType=INTEGER}, #{onlinePayRate,jdbcType=INTEGER}, #{offlineFlag,jdbcType=INTEGER},
+                #{offlinePeriodType,jdbcType=VARCHAR}, #{offlinePeriodValue,jdbcType=VARCHAR},
+                #{offlinePeriodLayType,jdbcType=VARCHAR}, #{offlinePeriodLayValue,jdbcType=VARCHAR},
+                #{offlinePayAmount,jdbcType=INTEGER}, #{offlinePayRate,jdbcType=INTEGER},
+                #{serviceType,jdbcType=VARCHAR},
+                #{returnUrl,jdbcType=VARCHAR}, #{executionTime,jdbcType=TIMESTAMP}, #{autoWithdraw,jdbcType=VARCHAR},
+                #{offlineExecutionTime,jdbcType=TIMESTAMP}, #{onlineIntlPayAmount,jdbcType=INTEGER},
+                #{onlineIntlPayRate,jdbcType=INTEGER}, #{transferFlag,jdbcType=INTEGER},
+                #{transferAmount,jdbcType=INTEGER},
+                #{transferRate,jdbcType=INTEGER}, #{virtualCardFlag,jdbcType=INTEGER}, #{verifyPubKey,jdbcType=VARCHAR},
+                #{signPubKey,jdbcType=VARCHAR}, #{signPriKey,jdbcType=VARCHAR}, #{versionSign,jdbcType=VARCHAR},
+                #{businessDataSign,jdbcType=VARCHAR}, #{rsaSignVersion,jdbcType=VARCHAR},
+                #{rsaSignData,jdbcType=VARCHAR},
+                #{tieredFeeRules,jdbcType=OTHER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.funpay.usercenter.model.TUcBussiness" useGeneratedKeys="true">
+        insert into t_uc_bussiness
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="merchantId != null">
+                merchant_id,
+            </if>
+            <if test="businessName != null">
+                business_name,
+            </if>
+            <if test="businessType != null">
+                business_type,
+            </if>
+            <if test="businessPlatform != null">
+                business_platform,
+            </if>
+            <if test="businessPackageName != null">
+                business_package_name,
+            </if>
+            <if test="businessSign != null">
+                business_sign,
+            </if>
+            <if test="signPath != null">
+                sign_path,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="recoveryDate != null">
+                recovery_date,
+            </if>
+            <if test="onlineFlag != null">
+                online_flag,
+            </if>
+            <if test="onlinePeriodType != null">
+                online_period_type,
+            </if>
+            <if test="onlinePeriodValue != null">
+                online_period_value,
+            </if>
+            <if test="onlinePeriodLayType != null">
+                online_period_lay_type,
+            </if>
+            <if test="onlinePeriodLayValue != null">
+                online_period_lay_value,
+            </if>
+            <if test="onlinePayAmount != null">
+                online_pay_amount,
+            </if>
+            <if test="onlinePayRate != null">
+                online_pay_rate,
+            </if>
+            <if test="offlineFlag != null">
+                offline_flag,
+            </if>
+            <if test="offlinePeriodType != null">
+                offline_period_type,
+            </if>
+            <if test="offlinePeriodValue != null">
+                offline_period_value,
+            </if>
+            <if test="offlinePeriodLayType != null">
+                offline_period_lay_type,
+            </if>
+            <if test="offlinePeriodLayValue != null">
+                offline_period_lay_value,
+            </if>
+            <if test="offlinePayAmount != null">
+                offline_pay_amount,
+            </if>
+            <if test="offlinePayRate != null">
+                offline_pay_rate,
+            </if>
+            <if test="serviceType != null">
+                service_type,
+            </if>
+            <if test="returnUrl != null">
+                return_url,
+            </if>
+            <if test="executionTime != null">
+                execution_time,
+            </if>
+            <if test="autoWithdraw != null">
+                auto_withdraw,
+            </if>
+            <if test="offlineExecutionTime != null">
+                offline_execution_time,
+            </if>
+            <if test="onlineIntlPayAmount != null">
+                online_intl_pay_amount,
+            </if>
+            <if test="onlineIntlPayRate != null">
+                online_intl_pay_rate,
+            </if>
+            <if test="transferFlag != null">
+                transfer_flag,
+            </if>
+            <if test="transferAmount != null">
+                transfer_amount,
+            </if>
+            <if test="transferRate != null">
+                transfer_rate,
+            </if>
+            <if test="virtualCardFlag != null">
+                virtual_card_flag,
+            </if>
+            <if test="verifyPubKey != null">
+                verify_pub_key,
+            </if>
+            <if test="signPubKey != null">
+                sign_pub_key,
+            </if>
+            <if test="signPriKey != null">
+                sign_pri_key,
+            </if>
+            <if test="versionSign != null">
+                version_sign,
+            </if>
+            <if test="businessDataSign != null">
+                business_data_sign,
+            </if>
+            <if test="rsaSignVersion != null">
+                rsa_sign_version,
+            </if>
+            <if test="rsaSignData != null">
+                rsa_sign_data,
+            </if>
+            <if test="tieredFeeRules != null">
+                tiered_fee_rules,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="merchantId != null">
+                #{merchantId,jdbcType=INTEGER},
+            </if>
+            <if test="businessName != null">
+                #{businessName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=VARCHAR},
+            </if>
+            <if test="businessPlatform != null">
+                #{businessPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="businessPackageName != null">
+                #{businessPackageName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessSign != null">
+                #{businessSign,jdbcType=VARCHAR},
+            </if>
+            <if test="signPath != null">
+                #{signPath,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="recoveryDate != null">
+                #{recoveryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="onlineFlag != null">
+                #{onlineFlag,jdbcType=INTEGER},
+            </if>
+            <if test="onlinePeriodType != null">
+                #{onlinePeriodType,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinePeriodValue != null">
+                #{onlinePeriodValue,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinePeriodLayType != null">
+                #{onlinePeriodLayType,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinePeriodLayValue != null">
+                #{onlinePeriodLayValue,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinePayAmount != null">
+                #{onlinePayAmount,jdbcType=INTEGER},
+            </if>
+            <if test="onlinePayRate != null">
+                #{onlinePayRate,jdbcType=INTEGER},
+            </if>
+            <if test="offlineFlag != null">
+                #{offlineFlag,jdbcType=INTEGER},
+            </if>
+            <if test="offlinePeriodType != null">
+                #{offlinePeriodType,jdbcType=VARCHAR},
+            </if>
+            <if test="offlinePeriodValue != null">
+                #{offlinePeriodValue,jdbcType=VARCHAR},
+            </if>
+            <if test="offlinePeriodLayType != null">
+                #{offlinePeriodLayType,jdbcType=VARCHAR},
+            </if>
+            <if test="offlinePeriodLayValue != null">
+                #{offlinePeriodLayValue,jdbcType=VARCHAR},
+            </if>
+            <if test="offlinePayAmount != null">
+                #{offlinePayAmount,jdbcType=INTEGER},
+            </if>
+            <if test="offlinePayRate != null">
+                #{offlinePayRate,jdbcType=INTEGER},
+            </if>
+            <if test="serviceType != null">
+                #{serviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="returnUrl != null">
+                #{returnUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="executionTime != null">
+                #{executionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="autoWithdraw != null">
+                #{autoWithdraw,jdbcType=VARCHAR},
+            </if>
+            <if test="offlineExecutionTime != null">
+                #{offlineExecutionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="onlineIntlPayAmount != null">
+                #{onlineIntlPayAmount,jdbcType=INTEGER},
+            </if>
+            <if test="onlineIntlPayRate != null">
+                #{onlineIntlPayRate,jdbcType=INTEGER},
+            </if>
+            <if test="transferFlag != null">
+                #{transferFlag,jdbcType=INTEGER},
+            </if>
+            <if test="transferAmount != null">
+                #{transferAmount,jdbcType=INTEGER},
+            </if>
+            <if test="transferRate != null">
+                #{transferRate,jdbcType=INTEGER},
+            </if>
+            <if test="virtualCardFlag != null">
+                #{virtualCardFlag,jdbcType=INTEGER},
+            </if>
+            <if test="verifyPubKey != null">
+                #{verifyPubKey,jdbcType=VARCHAR},
+            </if>
+            <if test="signPubKey != null">
+                #{signPubKey,jdbcType=VARCHAR},
+            </if>
+            <if test="signPriKey != null">
+                #{signPriKey,jdbcType=VARCHAR},
+            </if>
+            <if test="versionSign != null">
+                #{versionSign,jdbcType=VARCHAR},
+            </if>
+            <if test="businessDataSign != null">
+                #{businessDataSign,jdbcType=VARCHAR},
+            </if>
+            <if test="rsaSignVersion != null">
+                #{rsaSignVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="rsaSignData != null">
+                #{rsaSignData,jdbcType=VARCHAR},
+            </if>
+            <if test="tieredFeeRules != null">
+                #{tieredFeeRules,jdbcType=OTHER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.funpay.usercenter.model.TUcBussiness">
+        update t_uc_bussiness
+        <set>
+            <if test="merchantId != null">
+                merchant_id = #{merchantId,jdbcType=INTEGER},
+            </if>
+            <if test="businessName != null">
+                business_name = #{businessName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType,jdbcType=VARCHAR},
+            </if>
+            <if test="businessPlatform != null">
+                business_platform = #{businessPlatform,jdbcType=VARCHAR},
+            </if>
+            <if test="businessPackageName != null">
+                business_package_name = #{businessPackageName,jdbcType=VARCHAR},
+            </if>
+            <if test="businessSign != null">
+                business_sign = #{businessSign,jdbcType=VARCHAR},
+            </if>
+            <if test="signPath != null">
+                sign_path = #{signPath,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="recoveryDate != null">
+                recovery_date = #{recoveryDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="onlineFlag != null">
+                online_flag = #{onlineFlag,jdbcType=INTEGER},
+            </if>
+            <if test="onlinePeriodType != null">
+                online_period_type = #{onlinePeriodType,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinePeriodValue != null">
+                online_period_value = #{onlinePeriodValue,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinePeriodLayType != null">
+                online_period_lay_type = #{onlinePeriodLayType,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinePeriodLayValue != null">
+                online_period_lay_value = #{onlinePeriodLayValue,jdbcType=VARCHAR},
+            </if>
+            <if test="onlinePayAmount != null">
+                online_pay_amount = #{onlinePayAmount,jdbcType=INTEGER},
+            </if>
+            <if test="onlinePayRate != null">
+                online_pay_rate = #{onlinePayRate,jdbcType=INTEGER},
+            </if>
+            <if test="offlineFlag != null">
+                offline_flag = #{offlineFlag,jdbcType=INTEGER},
+            </if>
+            <if test="offlinePeriodType != null">
+                offline_period_type = #{offlinePeriodType,jdbcType=VARCHAR},
+            </if>
+            <if test="offlinePeriodValue != null">
+                offline_period_value = #{offlinePeriodValue,jdbcType=VARCHAR},
+            </if>
+            <if test="offlinePeriodLayType != null">
+                offline_period_lay_type = #{offlinePeriodLayType,jdbcType=VARCHAR},
+            </if>
+            <if test="offlinePeriodLayValue != null">
+                offline_period_lay_value = #{offlinePeriodLayValue,jdbcType=VARCHAR},
+            </if>
+            <if test="offlinePayAmount != null">
+                offline_pay_amount = #{offlinePayAmount,jdbcType=INTEGER},
+            </if>
+            <if test="offlinePayRate != null">
+                offline_pay_rate = #{offlinePayRate,jdbcType=INTEGER},
+            </if>
+            <if test="serviceType != null">
+                service_type = #{serviceType,jdbcType=VARCHAR},
+            </if>
+            <if test="returnUrl != null">
+                return_url = #{returnUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="executionTime != null">
+                execution_time = #{executionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="autoWithdraw != null">
+                auto_withdraw = #{autoWithdraw,jdbcType=VARCHAR},
+            </if>
+            <if test="offlineExecutionTime != null">
+                offline_execution_time = #{offlineExecutionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="onlineIntlPayAmount != null">
+                online_intl_pay_amount = #{onlineIntlPayAmount,jdbcType=INTEGER},
+            </if>
+            <if test="onlineIntlPayRate != null">
+                online_intl_pay_rate = #{onlineIntlPayRate,jdbcType=INTEGER},
+            </if>
+            <if test="transferFlag != null">
+                transfer_flag = #{transferFlag,jdbcType=INTEGER},
+            </if>
+            <if test="transferAmount != null">
+                transfer_amount = #{transferAmount,jdbcType=INTEGER},
+            </if>
+            <if test="transferRate != null">
+                transfer_rate = #{transferRate,jdbcType=INTEGER},
+            </if>
+            <if test="virtualCardFlag != null">
+                virtual_card_flag = #{virtualCardFlag,jdbcType=INTEGER},
+            </if>
+            <if test="verifyPubKey != null">
+                verify_pub_key = #{verifyPubKey,jdbcType=VARCHAR},
+            </if>
+            <if test="signPubKey != null">
+                sign_pub_key = #{signPubKey,jdbcType=VARCHAR},
+            </if>
+            <if test="signPriKey != null">
+                sign_pri_key = #{signPriKey,jdbcType=VARCHAR},
+            </if>
+            <if test="versionSign != null">
+                version_sign = #{versionSign,jdbcType=VARCHAR},
+            </if>
+            <if test="businessDataSign != null">
+                business_data_sign = #{businessDataSign,jdbcType=VARCHAR},
+            </if>
+            <if test="rsaSignVersion != null">
+                rsa_sign_version = #{rsaSignVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="rsaSignData != null">
+                rsa_sign_data = #{rsaSignData,jdbcType=VARCHAR},
+            </if>
+            <if test="tieredFeeRules != null">
+                tiered_fee_rules = #{tieredFeeRules,jdbcType=OTHER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.funpay.usercenter.model.TUcBussiness">
+        update t_uc_bussiness
+        set merchant_id              = #{merchantId,jdbcType=INTEGER},
+            business_name            = #{businessName,jdbcType=VARCHAR},
+            business_type            = #{businessType,jdbcType=VARCHAR},
+            business_platform        = #{businessPlatform,jdbcType=VARCHAR},
+            business_package_name    = #{businessPackageName,jdbcType=VARCHAR},
+            business_sign            = #{businessSign,jdbcType=VARCHAR},
+            sign_path                = #{signPath,jdbcType=VARCHAR},
+            create_time              = #{createTime,jdbcType=TIMESTAMP},
+            update_time              = #{updateTime,jdbcType=TIMESTAMP},
+            `status`                 = #{status,jdbcType=VARCHAR},
+            recovery_date            = #{recoveryDate,jdbcType=TIMESTAMP},
+            online_flag              = #{onlineFlag,jdbcType=INTEGER},
+            online_period_type       = #{onlinePeriodType,jdbcType=VARCHAR},
+            online_period_value      = #{onlinePeriodValue,jdbcType=VARCHAR},
+            online_period_lay_type   = #{onlinePeriodLayType,jdbcType=VARCHAR},
+            online_period_lay_value  = #{onlinePeriodLayValue,jdbcType=VARCHAR},
+            online_pay_amount        = #{onlinePayAmount,jdbcType=INTEGER},
+            online_pay_rate          = #{onlinePayRate,jdbcType=INTEGER},
+            offline_flag             = #{offlineFlag,jdbcType=INTEGER},
+            offline_period_type      = #{offlinePeriodType,jdbcType=VARCHAR},
+            offline_period_value     = #{offlinePeriodValue,jdbcType=VARCHAR},
+            offline_period_lay_type  = #{offlinePeriodLayType,jdbcType=VARCHAR},
+            offline_period_lay_value = #{offlinePeriodLayValue,jdbcType=VARCHAR},
+            offline_pay_amount       = #{offlinePayAmount,jdbcType=INTEGER},
+            offline_pay_rate         = #{offlinePayRate,jdbcType=INTEGER},
+            service_type             = #{serviceType,jdbcType=VARCHAR},
+            return_url               = #{returnUrl,jdbcType=VARCHAR},
+            execution_time           = #{executionTime,jdbcType=TIMESTAMP},
+            auto_withdraw            = #{autoWithdraw,jdbcType=VARCHAR},
+            offline_execution_time   = #{offlineExecutionTime,jdbcType=TIMESTAMP},
+            online_intl_pay_amount   = #{onlineIntlPayAmount,jdbcType=INTEGER},
+            online_intl_pay_rate     = #{onlineIntlPayRate,jdbcType=INTEGER},
+            transfer_flag            = #{transferFlag,jdbcType=INTEGER},
+            transfer_amount          = #{transferAmount,jdbcType=INTEGER},
+            transfer_rate            = #{transferRate,jdbcType=INTEGER},
+            virtual_card_flag        = #{virtualCardFlag,jdbcType=INTEGER},
+            verify_pub_key           = #{verifyPubKey,jdbcType=VARCHAR},
+            sign_pub_key             = #{signPubKey,jdbcType=VARCHAR},
+            sign_pri_key             = #{signPriKey,jdbcType=VARCHAR},
+            version_sign             = #{versionSign,jdbcType=VARCHAR},
+            business_data_sign       = #{businessDataSign,jdbcType=VARCHAR},
+            rsa_sign_version         = #{rsaSignVersion,jdbcType=VARCHAR},
+            rsa_sign_data            = #{rsaSignData,jdbcType=VARCHAR},
+            tiered_fee_rules         = #{tieredFeeRules,jdbcType=OTHER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funpay.usercenter.mapper.TAccountBalanceDao">
+    <resultMap id="BaseResultMap" type="com.funpay.usercenter.model.TAccountBalance">
+        <id column="merchant_id" jdbcType="INTEGER" property="merchantId"/>
+        <result column="balance" jdbcType="VARCHAR" property="balance"/>
+        <result column="freeze_balance" jdbcType="VARCHAR" property="freezeBalance"/>
+        <result column="apply_balance" jdbcType="BIGINT" property="applyBalance"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+        <result column="version_sign" jdbcType="VARCHAR" property="versionSign"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        merchant_id, balance, freeze_balance, apply_balance, version, version_sign
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_account_balance
+        where merchant_id = #{merchantId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_account_balance
+        where merchant_id = #{merchantId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="merchant_id" keyProperty="merchantId"
+            parameterType="com.funpay.usercenter.model.TAccountBalance" useGeneratedKeys="true">
+        insert into t_account_balance (balance, freeze_balance, apply_balance,
+                                       version, version_sign)
+        values (#{balance,jdbcType=VARCHAR}, #{freezeBalance,jdbcType=VARCHAR}, #{applyBalance,jdbcType=BIGINT},
+                #{version,jdbcType=BIGINT}, #{versionSign,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="merchant_id" keyProperty="merchantId"
+            parameterType="com.funpay.usercenter.model.TAccountBalance" useGeneratedKeys="true">
+        insert into t_account_balance
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="balance != null">
+                balance,
+            </if>
+            <if test="freezeBalance != null">
+                freeze_balance,
+            </if>
+            <if test="applyBalance != null">
+                apply_balance,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="versionSign != null">
+                version_sign,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="balance != null">
+                #{balance,jdbcType=VARCHAR},
+            </if>
+            <if test="freezeBalance != null">
+                #{freezeBalance,jdbcType=VARCHAR},
+            </if>
+            <if test="applyBalance != null">
+                #{applyBalance,jdbcType=BIGINT},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=BIGINT},
+            </if>
+            <if test="versionSign != null">
+                #{versionSign,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.funpay.usercenter.model.TAccountBalance">
+        update t_account_balance
+        <set>
+            <if test="balance != null">
+                balance = #{balance,jdbcType=VARCHAR},
+            </if>
+            <if test="freezeBalance != null">
+                freeze_balance = #{freezeBalance,jdbcType=VARCHAR},
+            </if>
+            <if test="applyBalance != null">
+                apply_balance = #{applyBalance,jdbcType=BIGINT},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=BIGINT},
+            </if>
+            <if test="versionSign != null">
+                version_sign = #{versionSign,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where merchant_id = #{merchantId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.funpay.usercenter.model.TAccountBalance">
+        update t_account_balance
+        set balance        = #{balance,jdbcType=VARCHAR},
+            freeze_balance = #{freezeBalance,jdbcType=VARCHAR},
+            apply_balance  = #{applyBalance,jdbcType=BIGINT},
+            version        = #{version,jdbcType=BIGINT},
+            version_sign   = #{versionSign,jdbcType=VARCHAR}
+        where merchant_id = #{merchantId,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,25 @@
+#eureka:
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://funpay:sadilfhaihasofnjkas@127.0.0.1:11001/eureka/,http://funpay:sadilfhaihasofnjkas@127.0.0.1:11002/eureka/
+##      defaultZone: http://funpay:sadilfhaihasofnjkas@192.168.7.197:11001/eureka/,http://funpay:sadilfhaihasofnjkas@192.168.7.197:11002/eureka/
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    jdbc-url: jdbc:mysql://8.218.25.23:21406/pay.usercenter?useUnicode=true&characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: leeko
+    password: leeko
+    minimum-idle: 1
+    maximun-pool-size: 5
+    auto-commit: true
+    idle-timeout: 60000
+    pool-name: uc
+    max-lifetime: 1800000
+    connection-timeout: 30000
+    connection-test-query: select 1
+
+
+

@@ -1,0 +1,31 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 12001
+  servlet:
+    context-path: /uc/
+# 应用名称
+spring:
+  application:
+    name: usercenter
+  profiles:
+    active: dev
+#  redis:
+#    host:
+#    port:
+#    password:
+eureka:
+  instance:
+    hostname: ${spring.cloud.client.hostname}
+    instance-id: ${spring.cloud.client.hostname}:${server.port}:${spring.application.instancce_id:${server.port}}
+ribbon:
+  readTimeout: 3000
+  connectTimeout: 3000
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 9000

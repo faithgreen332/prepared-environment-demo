@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funpay.management.mapper.TbBankInfoDao">
+    <resultMap id="BaseResultMap" type="com.funpay.model.dto.TbBankInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="bank_code" jdbcType="VARCHAR" property="bankCode"/>
+        <result column="bank_name" jdbcType="VARCHAR" property="bankName"/>
+        <result column="status" jdbcType="BOOLEAN" property="status"/>
+        <result column="pid" jdbcType="INTEGER" property="pid"/>
+        <result column="abbr" jdbcType="VARCHAR" property="abbr"/>
+        <result column="pay_way" jdbcType="VARCHAR" property="payWay"/>
+        <result column="accounting_period" jdbcType="INTEGER" property="accountingPeriod"/>
+        <result column="online_in_unsupport" jdbcType="VARCHAR" property="onlineInUnsupport"/>
+        <result column="online_out_unsupport" jdbcType="VARCHAR" property="onlineOutUnsupport"/>
+        <result column="offline_in_unsupport" jdbcType="VARCHAR" property="offlineInUnsupport"/>
+        <result column="offline_out_unsupport" jdbcType="VARCHAR" property="offlineOutUnsupport"/>
+        <result column="support_enum" jdbcType="SMALLINT" property="supportEnum"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, bank_code, bank_name, `status`, pid, abbr, pay_way, accounting_period, online_in_unsupport,
+    online_out_unsupport, offline_in_unsupport, offline_out_unsupport, support_enum, 
+    create_time, update_time, version
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_bank_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from tb_bank_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.funpay.model.dto.TbBankInfo"
+            useGeneratedKeys="true">
+        insert into tb_bank_info (bank_code, bank_name, `status`,
+                                  pid, abbr, pay_way,
+                                  accounting_period, online_in_unsupport, online_out_unsupport,
+                                  offline_in_unsupport, offline_out_unsupport,
+                                  support_enum, create_time, update_time,
+                                  version)
+        values (#{bankCode,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{status,jdbcType=BOOLEAN},
+                #{pid,jdbcType=INTEGER}, #{abbr,jdbcType=VARCHAR}, #{payWay,jdbcType=VARCHAR},
+                #{accountingPeriod,jdbcType=INTEGER}, #{onlineInUnsupport,jdbcType=VARCHAR},
+                #{onlineOutUnsupport,jdbcType=VARCHAR},
+                #{offlineInUnsupport,jdbcType=VARCHAR}, #{offlineOutUnsupport,jdbcType=VARCHAR},
+                #{supportEnum,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+                #{version,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.funpay.model.dto.TbBankInfo"
+            useGeneratedKeys="true">
+        insert into tb_bank_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bankCode != null">
+                bank_code,
+            </if>
+            <if test="bankName != null">
+                bank_name,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="abbr != null">
+                abbr,
+            </if>
+            <if test="payWay != null">
+                pay_way,
+            </if>
+            <if test="accountingPeriod != null">
+                accounting_period,
+            </if>
+            <if test="onlineInUnsupport != null">
+                online_in_unsupport,
+            </if>
+            <if test="onlineOutUnsupport != null">
+                online_out_unsupport,
+            </if>
+            <if test="offlineInUnsupport != null">
+                offline_in_unsupport,
+            </if>
+            <if test="offlineOutUnsupport != null">
+                offline_out_unsupport,
+            </if>
+            <if test="supportEnum != null">
+                support_enum,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bankCode != null">
+                #{bankCode,jdbcType=VARCHAR},
+            </if>
+            <if test="bankName != null">
+                #{bankName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=BOOLEAN},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="abbr != null">
+                #{abbr,jdbcType=VARCHAR},
+            </if>
+            <if test="payWay != null">
+                #{payWay,jdbcType=VARCHAR},
+            </if>
+            <if test="accountingPeriod != null">
+                #{accountingPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="onlineInUnsupport != null">
+                #{onlineInUnsupport,jdbcType=VARCHAR},
+            </if>
+            <if test="onlineOutUnsupport != null">
+                #{onlineOutUnsupport,jdbcType=VARCHAR},
+            </if>
+            <if test="offlineInUnsupport != null">
+                #{offlineInUnsupport,jdbcType=VARCHAR},
+            </if>
+            <if test="offlineOutUnsupport != null">
+                #{offlineOutUnsupport,jdbcType=VARCHAR},
+            </if>
+            <if test="supportEnum != null">
+                #{supportEnum,jdbcType=SMALLINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.funpay.model.dto.TbBankInfo">
+        update tb_bank_info
+        <set>
+            <if test="bankCode != null">
+                bank_code = #{bankCode,jdbcType=VARCHAR},
+            </if>
+            <if test="bankName != null">
+                bank_name = #{bankName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=BOOLEAN},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="abbr != null">
+                abbr = #{abbr,jdbcType=VARCHAR},
+            </if>
+            <if test="payWay != null">
+                pay_way = #{payWay,jdbcType=VARCHAR},
+            </if>
+            <if test="accountingPeriod != null">
+                accounting_period = #{accountingPeriod,jdbcType=INTEGER},
+            </if>
+            <if test="onlineInUnsupport != null">
+                online_in_unsupport = #{onlineInUnsupport,jdbcType=VARCHAR},
+            </if>
+            <if test="onlineOutUnsupport != null">
+                online_out_unsupport = #{onlineOutUnsupport,jdbcType=VARCHAR},
+            </if>
+            <if test="offlineInUnsupport != null">
+                offline_in_unsupport = #{offlineInUnsupport,jdbcType=VARCHAR},
+            </if>
+            <if test="offlineOutUnsupport != null">
+                offline_out_unsupport = #{offlineOutUnsupport,jdbcType=VARCHAR},
+            </if>
+            <if test="supportEnum != null">
+                support_enum = #{supportEnum,jdbcType=SMALLINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.funpay.model.dto.TbBankInfo">
+        update tb_bank_info
+        set bank_code             = #{bankCode,jdbcType=VARCHAR},
+            bank_name             = #{bankName,jdbcType=VARCHAR},
+            `status`              = #{status,jdbcType=BOOLEAN},
+            pid                   = #{pid,jdbcType=INTEGER},
+            abbr                  = #{abbr,jdbcType=VARCHAR},
+            pay_way               = #{payWay,jdbcType=VARCHAR},
+            accounting_period     = #{accountingPeriod,jdbcType=INTEGER},
+            online_in_unsupport   = #{onlineInUnsupport,jdbcType=VARCHAR},
+            online_out_unsupport  = #{onlineOutUnsupport,jdbcType=VARCHAR},
+            offline_in_unsupport  = #{offlineInUnsupport,jdbcType=VARCHAR},
+            offline_out_unsupport = #{offlineOutUnsupport,jdbcType=VARCHAR},
+            support_enum          = #{supportEnum,jdbcType=SMALLINT},
+            create_time           = #{createTime,jdbcType=TIMESTAMP},
+            update_time           = #{updateTime,jdbcType=TIMESTAMP},
+            version               = #{version,jdbcType=BIGINT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

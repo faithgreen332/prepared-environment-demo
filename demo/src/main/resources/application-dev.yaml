@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://node3:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: faith
+    minimum-idle: 1
+    maximun-pool-size: 5
+    auto-commit: true
+    idle-timeout: 60000
+    pool-name: uc
+    max-lifetime: 1800000
+    connection-timeout: 30000
+    connection-test-query: select 1
+pagehelper:
+  default-count: 10 # 目前还不知道有什么用，但是设置这个之后返回的 total 就是 -1 了，不想把表的总数返回就可以这么干，也懒得去跟代码

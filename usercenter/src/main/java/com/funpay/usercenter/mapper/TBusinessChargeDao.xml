@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funpay.usercenter.mapper.TBusinessChargeDao">
+    <resultMap id="BaseResultMap" type="com.funpay.usercenter.model.TBusinessCharge">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="merchant_id" jdbcType="INTEGER" property="merchantId"/>
+        <result column="business_id" jdbcType="INTEGER" property="businessId"/>
+        <result column="fee_id" jdbcType="INTEGER" property="feeId"/>
+        <result column="business_code" jdbcType="VARCHAR" property="businessCode"/>
+        <result column="charge_amount" jdbcType="INTEGER" property="chargeAmount"/>
+        <result column="charge_rate" jdbcType="INTEGER" property="chargeRate"/>
+        <result column="charge_service" jdbcType="INTEGER" property="chargeService"/>
+        <result column="charge_lease" jdbcType="INTEGER" property="chargeLease"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="flag" jdbcType="BOOLEAN" property="flag"/>
+        <result column="auto_withdraw" jdbcType="BOOLEAN" property="autoWithdraw"/>
+        <result column="execution_time" jdbcType="TIMESTAMP" property="executionTime"/>
+        <result column="period_type" jdbcType="VARCHAR" property="periodType"/>
+        <result column="period_value" jdbcType="VARCHAR" property="periodValue"/>
+        <result column="period_lay_type" jdbcType="VARCHAR" property="periodLayType"/>
+        <result column="period_lay_value" jdbcType="VARCHAR" property="periodLayValue"/>
+        <result column="purview_flag" jdbcType="INTEGER" property="purviewFlag"/>
+        <result column="callback" jdbcType="VARCHAR" property="callback"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="rsa_sign_version" jdbcType="VARCHAR" property="rsaSignVersion"/>
+        <result column="rsa_sign_data" jdbcType="VARCHAR" property="rsaSignData"/>
+        <result column="tiered_fee_rules" jdbcType="OTHER" property="tieredFeeRules"/>
+        <result column="support_type" jdbcType="VARCHAR" property="supportType"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, merchant_id, business_id, fee_id, business_code, charge_amount, charge_rate,
+    charge_service, charge_lease, `status`, flag, auto_withdraw, execution_time, period_type, 
+    period_value, period_lay_type, period_lay_value, purview_flag, callback, create_time, 
+    update_time, rsa_sign_version, rsa_sign_data, tiered_fee_rules, support_type
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_business_charge
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_business_charge
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.funpay.usercenter.model.TBusinessCharge"
+            useGeneratedKeys="true">
+        insert into t_business_charge (merchant_id, business_id, fee_id,
+                                       business_code, charge_amount, charge_rate,
+                                       charge_service, charge_lease, `status`,
+                                       flag, auto_withdraw, execution_time,
+                                       period_type, period_value, period_lay_type,
+                                       period_lay_value, purview_flag, callback,
+                                       create_time, update_time, rsa_sign_version,
+                                       rsa_sign_data, tiered_fee_rules, support_type)
+        values (#{merchantId,jdbcType=INTEGER}, #{businessId,jdbcType=INTEGER}, #{feeId,jdbcType=INTEGER},
+                #{businessCode,jdbcType=VARCHAR}, #{chargeAmount,jdbcType=INTEGER}, #{chargeRate,jdbcType=INTEGER},
+                #{chargeService,jdbcType=INTEGER}, #{chargeLease,jdbcType=INTEGER}, #{status,jdbcType=INTEGER},
+                #{flag,jdbcType=BOOLEAN}, #{autoWithdraw,jdbcType=BOOLEAN}, #{executionTime,jdbcType=TIMESTAMP},
+                #{periodType,jdbcType=VARCHAR}, #{periodValue,jdbcType=VARCHAR}, #{periodLayType,jdbcType=VARCHAR},
+                #{periodLayValue,jdbcType=VARCHAR}, #{purviewFlag,jdbcType=INTEGER}, #{callback,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{rsaSignVersion,jdbcType=VARCHAR},
+                #{rsaSignData,jdbcType=VARCHAR}, #{tieredFeeRules,jdbcType=OTHER}, #{supportType,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.funpay.usercenter.model.TBusinessCharge" useGeneratedKeys="true">
+        insert into t_business_charge
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="merchantId != null">
+                merchant_id,
+            </if>
+            <if test="businessId != null">
+                business_id,
+            </if>
+            <if test="feeId != null">
+                fee_id,
+            </if>
+            <if test="businessCode != null">
+                business_code,
+            </if>
+            <if test="chargeAmount != null">
+                charge_amount,
+            </if>
+            <if test="chargeRate != null">
+                charge_rate,
+            </if>
+            <if test="chargeService != null">
+                charge_service,
+            </if>
+            <if test="chargeLease != null">
+                charge_lease,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="flag != null">
+                flag,
+            </if>
+            <if test="autoWithdraw != null">
+                auto_withdraw,
+            </if>
+            <if test="executionTime != null">
+                execution_time,
+            </if>
+            <if test="periodType != null">
+                period_type,
+            </if>
+            <if test="periodValue != null">
+                period_value,
+            </if>
+            <if test="periodLayType != null">
+                period_lay_type,
+            </if>
+            <if test="periodLayValue != null">
+                period_lay_value,
+            </if>
+            <if test="purviewFlag != null">
+                purview_flag,
+            </if>
+            <if test="callback != null">
+                callback,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="rsaSignVersion != null">
+                rsa_sign_version,
+            </if>
+            <if test="rsaSignData != null">
+                rsa_sign_data,
+            </if>
+            <if test="tieredFeeRules != null">
+                tiered_fee_rules,
+            </if>
+            <if test="supportType != null">
+                support_type,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="merchantId != null">
+                #{merchantId,jdbcType=INTEGER},
+            </if>
+            <if test="businessId != null">
+                #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="feeId != null">
+                #{feeId,jdbcType=INTEGER},
+            </if>
+            <if test="businessCode != null">
+                #{businessCode,jdbcType=VARCHAR},
+            </if>
+            <if test="chargeAmount != null">
+                #{chargeAmount,jdbcType=INTEGER},
+            </if>
+            <if test="chargeRate != null">
+                #{chargeRate,jdbcType=INTEGER},
+            </if>
+            <if test="chargeService != null">
+                #{chargeService,jdbcType=INTEGER},
+            </if>
+            <if test="chargeLease != null">
+                #{chargeLease,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="flag != null">
+                #{flag,jdbcType=BOOLEAN},
+            </if>
+            <if test="autoWithdraw != null">
+                #{autoWithdraw,jdbcType=BOOLEAN},
+            </if>
+            <if test="executionTime != null">
+                #{executionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="periodType != null">
+                #{periodType,jdbcType=VARCHAR},
+            </if>
+            <if test="periodValue != null">
+                #{periodValue,jdbcType=VARCHAR},
+            </if>
+            <if test="periodLayType != null">
+                #{periodLayType,jdbcType=VARCHAR},
+            </if>
+            <if test="periodLayValue != null">
+                #{periodLayValue,jdbcType=VARCHAR},
+            </if>
+            <if test="purviewFlag != null">
+                #{purviewFlag,jdbcType=INTEGER},
+            </if>
+            <if test="callback != null">
+                #{callback,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="rsaSignVersion != null">
+                #{rsaSignVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="rsaSignData != null">
+                #{rsaSignData,jdbcType=VARCHAR},
+            </if>
+            <if test="tieredFeeRules != null">
+                #{tieredFeeRules,jdbcType=OTHER},
+            </if>
+            <if test="supportType != null">
+                #{supportType,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.funpay.usercenter.model.TBusinessCharge">
+        update t_business_charge
+        <set>
+            <if test="merchantId != null">
+                merchant_id = #{merchantId,jdbcType=INTEGER},
+            </if>
+            <if test="businessId != null">
+                business_id = #{businessId,jdbcType=INTEGER},
+            </if>
+            <if test="feeId != null">
+                fee_id = #{feeId,jdbcType=INTEGER},
+            </if>
+            <if test="businessCode != null">
+                business_code = #{businessCode,jdbcType=VARCHAR},
+            </if>
+            <if test="chargeAmount != null">
+                charge_amount = #{chargeAmount,jdbcType=INTEGER},
+            </if>
+            <if test="chargeRate != null">
+                charge_rate = #{chargeRate,jdbcType=INTEGER},
+            </if>
+            <if test="chargeService != null">
+                charge_service = #{chargeService,jdbcType=INTEGER},
+            </if>
+            <if test="chargeLease != null">
+                charge_lease = #{chargeLease,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="flag != null">
+                flag = #{flag,jdbcType=BOOLEAN},
+            </if>
+            <if test="autoWithdraw != null">
+                auto_withdraw = #{autoWithdraw,jdbcType=BOOLEAN},
+            </if>
+            <if test="executionTime != null">
+                execution_time = #{executionTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="periodType != null">
+                period_type = #{periodType,jdbcType=VARCHAR},
+            </if>
+            <if test="periodValue != null">
+                period_value = #{periodValue,jdbcType=VARCHAR},
+            </if>
+            <if test="periodLayType != null">
+                period_lay_type = #{periodLayType,jdbcType=VARCHAR},
+            </if>
+            <if test="periodLayValue != null">
+                period_lay_value = #{periodLayValue,jdbcType=VARCHAR},
+            </if>
+            <if test="purviewFlag != null">
+                purview_flag = #{purviewFlag,jdbcType=INTEGER},
+            </if>
+            <if test="callback != null">
+                callback = #{callback,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="rsaSignVersion != null">
+                rsa_sign_version = #{rsaSignVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="rsaSignData != null">
+                rsa_sign_data = #{rsaSignData,jdbcType=VARCHAR},
+            </if>
+            <if test="tieredFeeRules != null">
+                tiered_fee_rules = #{tieredFeeRules,jdbcType=OTHER},
+            </if>
+            <if test="supportType != null">
+                support_type = #{supportType,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.funpay.usercenter.model.TBusinessCharge">
+        update t_business_charge
+        set merchant_id      = #{merchantId,jdbcType=INTEGER},
+            business_id      = #{businessId,jdbcType=INTEGER},
+            fee_id           = #{feeId,jdbcType=INTEGER},
+            business_code    = #{businessCode,jdbcType=VARCHAR},
+            charge_amount    = #{chargeAmount,jdbcType=INTEGER},
+            charge_rate      = #{chargeRate,jdbcType=INTEGER},
+            charge_service   = #{chargeService,jdbcType=INTEGER},
+            charge_lease     = #{chargeLease,jdbcType=INTEGER},
+            `status`         = #{status,jdbcType=INTEGER},
+            flag             = #{flag,jdbcType=BOOLEAN},
+            auto_withdraw    = #{autoWithdraw,jdbcType=BOOLEAN},
+            execution_time   = #{executionTime,jdbcType=TIMESTAMP},
+            period_type      = #{periodType,jdbcType=VARCHAR},
+            period_value     = #{periodValue,jdbcType=VARCHAR},
+            period_lay_type  = #{periodLayType,jdbcType=VARCHAR},
+            period_lay_value = #{periodLayValue,jdbcType=VARCHAR},
+            purview_flag     = #{purviewFlag,jdbcType=INTEGER},
+            callback         = #{callback,jdbcType=VARCHAR},
+            create_time      = #{createTime,jdbcType=TIMESTAMP},
+            update_time      = #{updateTime,jdbcType=TIMESTAMP},
+            rsa_sign_version = #{rsaSignVersion,jdbcType=VARCHAR},
+            rsa_sign_data    = #{rsaSignData,jdbcType=VARCHAR},
+            tiered_fee_rules = #{tieredFeeRules,jdbcType=OTHER},
+            support_type     = #{supportType,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

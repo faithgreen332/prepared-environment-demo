@@ -1,0 +1,18 @@
+# 应用名称
+spring:
+  application:
+    name: rabbitmq-consumer
+  rabbitmq:
+    host: 192.168.187.10
+    port: 5672
+    username: faith
+    password: faith
+    virtual-host: funpay
+    remit-out:
+      listener:
+        consumers-per-queue: 20 # 配置 remit-out 这个 queue 的消费并发量是 2，实际应用的时候根据并发量调整
+        prefetch: 1 # 配置 remit-out 这个 queue 的消费批次一次只取一条消息，在这个 consumer 忙的时候，让服务器分发挤压的消息到其他不忙的 consumer
+
+server:
+  port: 8081
+

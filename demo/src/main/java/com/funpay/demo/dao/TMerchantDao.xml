@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.funpay.demo.dao.TMerchantDao">
+    <resultMap id="BaseResultMap" type="com.funpay.demo.dto.TMerchant">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="abbr" jdbcType="VARCHAR" property="abbr"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="office_phone" jdbcType="VARCHAR" property="officePhone"/>
+        <result column="mail" jdbcType="VARCHAR" property="mail"/>
+        <result column="developer_mail" jdbcType="VARCHAR" property="developerMail"/>
+        <result column="finance_mail" jdbcType="VARCHAR" property="financeMail"/>
+        <result column="application_id" jdbcType="VARCHAR" property="applicationId"/>
+        <result column="status" jdbcType="SMALLINT" property="status"/>
+        <result column="recovery_time" jdbcType="TIMESTAMP" property="recoveryTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, `name`, abbr, description, phone, office_phone, mail, developer_mail, finance_mail,
+    application_id, `status`, recovery_time, create_time, update_time, version
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_merchant
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_merchant
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from t_merchant
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.funpay.demo.dto.TMerchant"
+            useGeneratedKeys="true">
+        insert into t_merchant (`name`, abbr, description,
+                                phone, office_phone, mail,
+                                developer_mail, finance_mail, application_id,
+                                `status`, recovery_time, create_time,
+                                update_time, version)
+        values (#{name,jdbcType=VARCHAR}, #{abbr,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR},
+                #{phone,jdbcType=VARCHAR}, #{officePhone,jdbcType=VARCHAR}, #{mail,jdbcType=VARCHAR},
+                #{developerMail,jdbcType=VARCHAR}, #{financeMail,jdbcType=VARCHAR}, #{applicationId,jdbcType=VARCHAR},
+                #{status,jdbcType=SMALLINT}, #{recoveryTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP}, #{version,jdbcType=BIGINT})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.funpay.demo.dto.TMerchant"
+            useGeneratedKeys="true">
+        insert into t_merchant
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="abbr != null">
+                abbr,
+            </if>
+            <if test="description != null">
+                description,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="officePhone != null">
+                office_phone,
+            </if>
+            <if test="mail != null">
+                mail,
+            </if>
+            <if test="developerMail != null">
+                developer_mail,
+            </if>
+            <if test="financeMail != null">
+                finance_mail,
+            </if>
+            <if test="applicationId != null">
+                application_id,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="recoveryTime != null">
+                recovery_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="abbr != null">
+                #{abbr,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="officePhone != null">
+                #{officePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="developerMail != null">
+                #{developerMail,jdbcType=VARCHAR},
+            </if>
+            <if test="financeMail != null">
+                #{financeMail,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationId != null">
+                #{applicationId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=SMALLINT},
+            </if>
+            <if test="recoveryTime != null">
+                #{recoveryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.funpay.demo.dto.TMerchant">
+        update t_merchant
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="abbr != null">
+                abbr = #{abbr,jdbcType=VARCHAR},
+            </if>
+            <if test="description != null">
+                description = #{description,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="officePhone != null">
+                office_phone = #{officePhone,jdbcType=VARCHAR},
+            </if>
+            <if test="mail != null">
+                mail = #{mail,jdbcType=VARCHAR},
+            </if>
+            <if test="developerMail != null">
+                developer_mail = #{developerMail,jdbcType=VARCHAR},
+            </if>
+            <if test="financeMail != null">
+                finance_mail = #{financeMail,jdbcType=VARCHAR},
+            </if>
+            <if test="applicationId != null">
+                application_id = #{applicationId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=SMALLINT},
+            </if>
+            <if test="recoveryTime != null">
+                recovery_time = #{recoveryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.funpay.demo.dto.TMerchant">
+        update t_merchant
+        set `name`         = #{name,jdbcType=VARCHAR},
+            abbr           = #{abbr,jdbcType=VARCHAR},
+            description    = #{description,jdbcType=VARCHAR},
+            phone          = #{phone,jdbcType=VARCHAR},
+            office_phone   = #{officePhone,jdbcType=VARCHAR},
+            mail           = #{mail,jdbcType=VARCHAR},
+            developer_mail = #{developerMail,jdbcType=VARCHAR},
+            finance_mail   = #{financeMail,jdbcType=VARCHAR},
+            application_id = #{applicationId,jdbcType=VARCHAR},
+            `status`       = #{status,jdbcType=SMALLINT},
+            recovery_time  = #{recoveryTime,jdbcType=TIMESTAMP},
+            create_time    = #{createTime,jdbcType=TIMESTAMP},
+            update_time    = #{updateTime,jdbcType=TIMESTAMP},
+            version        = #{version,jdbcType=BIGINT}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

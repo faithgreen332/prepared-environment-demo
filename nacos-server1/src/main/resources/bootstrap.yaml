@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: funpay-payment-consumer
+  profiles:
+    active: dev
+  # Nacos认证信息
+  # 配置中心
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.187.10:8848,192.168.187.11:8848,192.168.187.12:8848
+        group: payment
+        file-extension: yaml
+        #需要的时候再配置
+#        shared-configs[0]:
+#          data-id: common.yaml
+        namespace: a1d039f2-4e7e-4fc5-97ca-fa14be59860c
+
+      #服务发现与注册中心
+      discovery:
+        server-addr: 192.168.187.10:8848,192.168.187.11:8848,192.168.187.12:8848
+        group: payment
+        namespace: a1d039f2-4e7e-4fc5-97ca-fa14be59860c
+

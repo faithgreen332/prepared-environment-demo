@@ -1,0 +1,38 @@
+# 应用名称
+spring:
+  rabbitmq:
+    host: 192.168.187.10
+    port: 5672
+    username: faith
+    password: faith
+    virtual-host: funpay
+    # SMTP 服务骑地址
+  mail:
+    host: smtp.vip.163.com
+    # 服务器的端口
+    port: 465
+    # 用户名
+    username: lijinfeigreen@vip.163.com
+    # 授权码
+    password: HZVTGOWBVRVYNNMN
+    # 默认的邮件编码
+    default-encoding: UTF-8
+    # SSL 加密工厂
+    properties:
+      mail:
+        stmp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+          ssl: true
+          socketFactory:
+            port: 465
+      # 开启邮件 debug，让控制台打印出来方便排查
+      debug: true
+    protocol: smtps
+
+funpay:
+  mail:
+    default:
+      from: lijinfeigreen@vip.163.com
+      to: lijinfeigreen@vip.163.com
+      subject: 来自funpay的邮件
+      text: 哎呀，邮件正文跑丢了！
